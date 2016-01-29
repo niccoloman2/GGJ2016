@@ -33,9 +33,13 @@ public class PlayerControls : MonoBehaviour {
 			return;
 		}
 
+		if(!l_targetIngredient.bIsThrowable) return;
+
 		int l_directionModifier = (p_direction == ThrowDirection.LEFT) ? -1 : 1;
 
-		l_targetIngredient.GetComponent<Rigidbody2D>().AddForce(new Vector2(l_directionModifier * 400, 1000));
+		l_targetIngredient.GetComponent<Rigidbody2D>().AddForce(new Vector2(l_directionModifier * 400, 1000)); //arbritrary numbers
+
+		l_targetIngredient.bIsThrowable = false;
 	}
 
 	// Update is called once per frame

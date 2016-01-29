@@ -4,7 +4,16 @@ using System.Collections;
 public class Ingredient : MonoBehaviour {
 
 	private bool m_bisActive; //if object is visible and on-screen
-	public 	bool bIsThrowable; //if object can be flung/thrown. If it is in range.
+	public	bool bIsActive
+	{
+		get
+		{
+			return m_bisActive;
+		}
+	}
+
+
+	public bool bIsThrowable; //if object can be flung/thrown. If it is in range.
 
 	private Vector3 m_startingPosition;
 
@@ -28,7 +37,7 @@ public class Ingredient : MonoBehaviour {
 
 	public void deactivate()
 	{
-		Debug.Log ("Item deactivated");
+		//Debug.Log ("Item deactivated");
 
 		this.gameObject.SetActive(false);
 
