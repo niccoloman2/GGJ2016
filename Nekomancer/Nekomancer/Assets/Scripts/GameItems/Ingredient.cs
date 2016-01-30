@@ -61,6 +61,7 @@ public class Ingredient : MonoBehaviour {
 	{
 		if(this.transform.position.y <= -6 && m_bisActive)
 		{
+			GameplayManager.instance.breakStreak();
 			deactivate();
 		}
 	}

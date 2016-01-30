@@ -101,11 +101,11 @@ public class SpawnManager : MonoBehaviour {
 
 	private float getMinimumSpawnTime()
 	{
-		if(GameplayManager.instance.timeElapsed >= 45f)
+		if(GameplayManager.instance.timeElapsed >= 60f)
 		{
 			return 0.1f;
 		}
-		if(GameplayManager.instance.timeElapsed >= 30f)
+		if(GameplayManager.instance.timeElapsed >= 35f)
 		{
 			return 0.25f;
 		}
@@ -128,11 +128,11 @@ public class SpawnManager : MonoBehaviour {
 
 	private float getMaximumSpawnTime()
 	{
-		if(GameplayManager.instance.timeElapsed >= 45f)
+		if(GameplayManager.instance.timeElapsed >= 60f)
 		{
 			return 0.2f;
 		}
-		if(GameplayManager.instance.timeElapsed >= 30f)
+		if(GameplayManager.instance.timeElapsed >= 35f)
 		{
 			return 0.5f;
 		}

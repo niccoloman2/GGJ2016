@@ -12,11 +12,14 @@ public class PortalChecker : MonoBehaviour {
 			if(l_ingredient.bIsGoodIngredient)
 			{
 				Debug.Log ("Score!");
+				GameplayManager.instance.addScore();
+				GameplayManager.instance.goodStreak();
 			}
 			else
 			{
 				Debug.Log ("Penalty!");
 				GameplayManager.instance.strikePenalty();
+				GameplayManager.instance.breakStreak();
 			}
 
 			l_ingredient.deactivate();
