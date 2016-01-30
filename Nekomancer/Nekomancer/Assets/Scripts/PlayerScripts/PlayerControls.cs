@@ -7,9 +7,7 @@ public class PlayerControls : MonoBehaviour {
 	{
 		LEFT, RIGHT
 	};
-
-	public Ingredient sampleIngredient;
-
+	
 	private PlayerThrowRange m_playerThrowRange;
 
 	void Awake()
@@ -56,12 +54,5 @@ public class PlayerControls : MonoBehaviour {
 			Debug.Log ("Right key pressed");
 			throwIngredient(ThrowDirection.RIGHT);
 		}
-
-		if(Input.GetKeyDown(KeyCode.Space) && sampleIngredient != null)
-		{
-			sampleIngredient.deactivate();
-			sampleIngredient.activate();
-		}
-	
 	}
 }

@@ -57,14 +57,50 @@ public class SpawnManager : MonoBehaviour {
 		StartCoroutine(spawnWaveCoroutine());
 	}
 
+	private float getMinimumSpawnTime()
+	{
+		if(GameplayManager.instance.timeElapsed >= 30f)
+		{
+			return 0.25f;
+		}
+
+		else if(GameplayManager.instance.timeElapsed >= 20f)
+		{
+			return 0.5f;
+		}
+
+		else
+		{
+			return 0.75f;
+		}
+	}
+
+	private float getMaximumSpawnTime()
+	{
+		if(GameplayManager.instance.timeElapsed >= 30f)
+		{
+			return 0.75f;
+		}
+		
+		else if(GameplayManager.instance.timeElapsed >= 20f)
+		{
+			return 1f;
+		}
+		
+		else
+		{
+			return 1.25f;
+		}
+	}
+
 	IEnumerator spawnWaveCoroutine()
 	{
 		int ingredientNumber = 30;
 		int ingredientsSpawned = 0;
 
-		while(ingredientsSpawned < ingredientNumber)
+		while(!GameplayManager.instance.bIsGameOver)
 		{
-			yield return new WaitForSeconds(1f); //Take note. 0.25f is the fastest spawn time we can have.
+			yield return new WaitForSeconds(Random.Range (getMinimumSpawnTime(), 2f) ); //Take note. 0.25f is the fastest spawn time we can have.
 
 			spawnIngredient();
 

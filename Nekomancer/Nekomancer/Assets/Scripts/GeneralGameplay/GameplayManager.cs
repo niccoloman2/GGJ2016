@@ -16,6 +16,15 @@ public class GameplayManager : MonoBehaviour {
 		}
 	}
 
+	private bool m_bIsGameOver;
+	public	bool bIsGameOver
+	{
+		get
+		{
+			return m_bIsGameOver;
+		}
+	}
+
 	void Awake()
 	{
 		if(instance)
@@ -27,6 +36,7 @@ public class GameplayManager : MonoBehaviour {
 
 		m_numberOfLives		= 3;
 		m_timeElapsed		= 0f;
+		m_bIsGameOver		= false;
 	}
 
 	public void strikePenalty()
@@ -36,6 +46,8 @@ public class GameplayManager : MonoBehaviour {
 		if(m_numberOfLives <= 0)
 		{
 			m_numberOfLives = 0;
+
+			m_bIsGameOver	= true;
 
 			Debug.Log ("Game Over");
 		}

@@ -47,4 +47,12 @@ public class Ingredient : MonoBehaviour {
 
 		m_bisActive		= false;
 	}
+
+	void Update()
+	{
+		if(this.transform.position.y <= -6 && m_bisActive)
+		{
+			deactivate();
+		}
+	}
 }
