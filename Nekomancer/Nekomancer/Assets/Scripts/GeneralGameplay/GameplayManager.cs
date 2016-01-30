@@ -49,8 +49,14 @@ public class GameplayManager : MonoBehaviour {
 
 			m_bIsGameOver	= true;
 
+			SpawnManager.instance.deactivateAllObjects();
+
+			BGMController.instance.stopBGM();
+
 			Debug.Log ("Game Over");
 		}
+
+		UIManager.instance.updateStrikeFills(m_numberOfLives);
 	}
 
 	void FixedUpdate()

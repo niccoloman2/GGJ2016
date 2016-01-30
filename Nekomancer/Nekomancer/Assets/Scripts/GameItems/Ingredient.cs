@@ -17,6 +17,15 @@ public class Ingredient : MonoBehaviour {
 
 	private Vector3 m_startingPosition;
 
+	[SerializeField] private bool m_bIsGoodIngredient; //if this is false, then it's garbage
+	public	bool bIsGoodIngredient
+	{
+		get
+		{
+			return m_bIsGoodIngredient;
+		}
+	}
+
 	void Awake()
 	{
 		m_startingPosition = new Vector3(0, 6, 0);
@@ -26,7 +35,7 @@ public class Ingredient : MonoBehaviour {
 
 	public void activate()
 	{
-		Debug.Log ("Item activated");
+		//Debug.Log ("Item activated");
 
 		this.gameObject.SetActive(true);
 

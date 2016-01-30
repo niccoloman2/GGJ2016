@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PlayerControls : MonoBehaviour {
 
+	private PlayerAnimationControl m_animationControl;
+
 	private enum ThrowDirection
 	{
 		LEFT, RIGHT
@@ -13,6 +15,7 @@ public class PlayerControls : MonoBehaviour {
 	void Awake()
 	{
 		m_playerThrowRange = GetComponentInChildren<PlayerThrowRange>();
+		m_animationControl = GetComponent<PlayerAnimationControl>();
 	}
 
 	void throwIngredient(ThrowDirection p_direction)
@@ -33,11 +36,14 @@ public class PlayerControls : MonoBehaviour {
 
 		if(!l_targetIngredient.bIsThrowable) return;
 
+		SFXController.instance.playWhooshSFX();
+
 		int l_directionModifier = (p_direction == ThrowDirection.LEFT) ? -1 : 1;
 
 		l_targetIngredient.GetComponent<Rigidbody2D>().AddForce(new Vector2(l_directionModifier * 400, 1000)); //arbritrary numbers
 
 		l_targetIngredient.bIsThrowable = false;
+		l_targetIngredient = null;
 	}
 
 	// Update is called once per frame
@@ -45,13 +51,15 @@ public class PlayerControls : MonoBehaviour {
 
 		if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
 		{
-			Debug.Log ("Left key pressed");
+			//Debug.Log ("Left key pressed");
+			m_animationControl.playLeftThrowAnimation();
 			throwIngredient(ThrowDirection.LEFT);
 		}
 
 		if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
 		{
-			Debug.Log ("Right key pressed");
+			//Debug.Log ("Right key pressed");
+			m_animationControl.playRightThrowAnimation();
 			throwIngredient(ThrowDirection.RIGHT);
 		}
 	}

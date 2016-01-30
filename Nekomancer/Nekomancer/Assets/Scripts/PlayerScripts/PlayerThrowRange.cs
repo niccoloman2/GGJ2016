@@ -23,6 +23,19 @@ public class PlayerThrowRange : MonoBehaviour {
 		}
 	}
 
+	void OnTriggerStay2D(Collider2D p_col)
+	{
+		Ingredient l_ingredient = p_col.GetComponent<Ingredient>();
+		
+		if(p_col != null)
+		{
+			if(l_ingredient.bIsThrowable)
+			{
+				m_ingredientInRange			= l_ingredient;
+			}
+		}
+	}
+
 	void OnTriggerExit2D(Collider2D p_col)
 	{
 		Ingredient l_ingredient = p_col.GetComponent<Ingredient>();
