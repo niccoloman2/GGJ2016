@@ -44,6 +44,8 @@ public class GameplayManager : MonoBehaviour {
 
 	[SerializeField] private ParticleSystem m_gameOverParticles;
 
+	[SerializeField] private ScorePopups m_scorePopup;
+
 	void Awake()
 	{
 		if(instance)
@@ -70,6 +72,8 @@ public class GameplayManager : MonoBehaviour {
 
 	public void addScore()
 	{
+		SFXController.instance.playScoreSFX();
+		m_scorePopup.scorePopup(5 * m_scoreMultiplier);
 		m_score += 5 * m_scoreMultiplier;
 		UIManager.instance.updateScoreLabel();
 	}
@@ -77,6 +81,11 @@ public class GameplayManager : MonoBehaviour {
 	public void goodStreak()
 	{
 		m_streak++;
+
+		if(m_streak >= 5)
+		{
+			m_scorePopup.comboPopup(m_streak);
+		}
 
 		m_scoreMultiplier = 1 + (m_streak/10);
 	}
@@ -93,6 +102,7 @@ public class GameplayManager : MonoBehaviour {
 
 	public void strikePenalty()
 	{
+		SFXController.instance.playMissSFX();
 		m_numberOfLives--;
 
 		if(m_numberOfLives <= 0)
@@ -133,7 +143,11 @@ public class GameplayManager : MonoBehaviour {
 
 	IEnumerator endGameCoroutine()
 	{
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(0.33f);
+
+		SFXController.instance.playGameOverJingle();
+
+		yield return new WaitForSeconds(3.25f);
 		m_gameOverParticles.Play();
 		FadeScreenIn(2f);
 

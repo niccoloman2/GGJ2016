@@ -16,6 +16,8 @@ public class GameOverManager : MonoBehaviour {
 	private bool m_bCanContinue;
 	[SerializeField] private GameObject m_continueIndicator;
 
+	public RandomQuote m_randomQuote;
+
 	void Start()
 	{
 		m_bCanContinue			= false;
@@ -101,7 +103,14 @@ public class GameOverManager : MonoBehaviour {
 		{
 			if(m_bCanContinue)
 			{
-				Application.LoadLevel("Title");
+				if(m_randomQuote.quoteID == 13)
+				{
+					Application.LoadLevel("JohnCena");
+				}
+				else
+				{
+					Application.LoadLevel("Title");
+				}
 			}
 		}
 	}
