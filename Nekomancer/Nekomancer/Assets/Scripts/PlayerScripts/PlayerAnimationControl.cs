@@ -19,4 +19,14 @@ public class PlayerAnimationControl : MonoBehaviour {
 	{
 		m_animator.Play("ThrowRight");
 	}
+
+	public void playMissAnimation()
+	{
+		m_animator.Play("Miss");
+	}
+
+	public void playOverAnimation()
+	{
+		m_animator.Play("Over");
+	}
 }

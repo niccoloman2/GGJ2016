@@ -12,6 +12,7 @@ public class GarbageChecker : MonoBehaviour {
 			if(l_ingredient.bIsGoodIngredient)
 			{
 				Debug.Log ("Waste!");
+				GameplayManager.instance.strikePenalty();
 				GameplayManager.instance.breakStreak();
 			}
 			else

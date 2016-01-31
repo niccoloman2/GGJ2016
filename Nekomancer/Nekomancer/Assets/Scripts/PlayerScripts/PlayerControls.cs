@@ -49,6 +49,8 @@ public class PlayerControls : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if(GameplayManager.instance.bIsGameOver) return;
+
 		if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
 		{
 			//Debug.Log ("Left key pressed");
